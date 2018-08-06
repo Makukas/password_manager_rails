@@ -1,0 +1,3 @@
+class Password < ApplicationRecord
+
+end

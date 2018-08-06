@@ -1,0 +1,13 @@
+ <%if user_signed_in?%>
+    <table>
+    <tr>
+        <th>Account or service name</th>
+        <th>Password</th>
+    </tr>
+    <%@passwords.each do |p|%>
+    <tr>
+    <td><%=p.name%></td>
+    <td><%=p.password%></td>
+    </tr>
+ <%end%>
+ <%end%>

@@ -1,0 +1,61 @@
+<div class="form">
+  <h3>Welcome!</h3>
+  <h4>What kind of a password would you like?</h4>
+  <div class="passwordForm">
+    <br><br>
+    <form >
+      <div class="form-group">
+        <label for="passwordLenght">Lenght of the password</label>
+        <input type="text" class="form-control" id="PasswordLenght" name="PasswordLenght" placeholder="Number of characters">
+          <div class="form-check">
+            <br>
+            <div class="formCheck">
+            <label class="form-check-label">
+              <input class="form-check-input" id="numbers" type="checkbox" value="" name="numbers">
+              Use numbers in the password (1 2 3)
+            </label>
+            <br>
+            <label class="form-check-label">
+              <input class="form-check-input" id="smallLetters" type="checkbox" value="" name="smallLetters">
+              Use small letters in the password (a b c)
+            </label>
+            <br>
+            <label class="form-check-label">
+              <input class="form-check-input" id="capitalLetters" type="checkbox" value="" name="capitalLetters">
+              Use capital letters in the password (A B C)
+            </label>
+            <br>
+            <label class="form-check-label">
+              <input class="form-check-input" id="specialChar" type="checkbox" value="" name="specialChar">
+              Use special characters in the password (! @ #)
+            </label>
+            <br>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="generatePassword()">Generate!</button>
+      </div>
+      <br>
+    </form>
+  </div>
+    <%= form_for @password, :html => { :id => "PasswordValueForm" } do |form| %>
+    <div>
+        <%if user_signed_in?%>
+            <%= form.hidden_field :userID, :value => current_user.id  %>
+            <%= form.label :name, 'Account or service name (optional)'  %>
+            <br>
+            <%= form.text_field :name, id: "name", :value => "", class: 'form-control' %>
+            <br>
+            <%= form.label :password, 'Your password is below'  %>
+            <br>
+            <%= form.text_field :password, id: "Password", class: 'form-control' %>
+            <br>
+            <%= form.submit 'Save password', class: 'btn btn-primary' %>
+        <%else%>
+            <%= form.label :password, 'Your password is below'  %>
+            <br>
+            <%= form.text_field :password, id: "Password", class: 'form-control' %>
+            <br>
+            <button type="button" class="btn btn-outline-success" onclick="swal({type: 'error', title: 'Oops...', text: 'Please log in to use this feature!'})">Save password</button>
+        <%end%>
+    </div>
+    <%end%>
